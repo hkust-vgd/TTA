@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <br>
+  <!-- Basic Page Needs
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>RFNet-4D++</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/footable.standalone.min.css">
+
+  <!-- Favicon
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google icon -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Analytics -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-86869673-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- Hover effect: https://codepen.io/nxworld/pen/ZYNOBZ -->
+  <style>
+    img {
+      display: block;
+    }
+
+    .column-50 {
+      float: left;
+      width: 50%;
+    }
+
+    .row-50:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .floating-teaser {
+      float: left;
+      width: 30%;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .venue strong {
+      color: #99324b;
+    }
+
+    .benchmark {
+      width: 100%;
+      max-width: 960px;
+      overflow: scroll;
+      overflow-y: hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Primary Page Layout
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <h4 style="text-align:center">Test-Time Augmentation for 3D Point Cloud Classification and Segmentation</h4>
+    <p align="center" , style="margin-bottom:12px;">
+      <a class="simple" href="https://tuananh1007.github.io/">Tuan-Anh Vu</a><sup>1 &#35;</sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="simple" href="https://www.linkedin.com/in/srinjay-sarkar-1501b9112/">Srinjay Sarkar</a><sup>2 &#35;</sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="simple" href="https://zhiyuanzhang.net/">Zhiyuan Zhang</a><sup>3</sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="simple" href="https://sonhua.github.io/">Binh-Son Hua</a><sup>2,4 &#128231;</sup>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="simple" href="https://saikit.org/">Sai-Kit Yeung</a><sup>1</sup>
+    </p>
+
+    <p align="center" style="margin-bottom:20px;">
+      <sup>1</sup>The Hong Kong University of Science and Technology, Hong Kong SAR
+      <span style="display:inline-block; width: 32px"></span>
+      <sup>2</sup>VinAI Research, Vietnam
+      <br>
+      <sup>3</sup>Singapore Management University, Singapore
+      <span style="display:inline-block; width: 32px"></span>
+      <sup>4</sup>Trinity College Dublin, Ireland
+      <br>
+      <sup>&#35;</sup>co-first author
+      <span style="display:inline-block; width: 32px"></span>
+      <sup>&#128231;</sup>corresponding author
+      <br>
+    </p>
+
+    <div class="venue">
+      <p align="center"><h6 style="text-align:center"><b>International Conference on 3D Vision (3DV 2024)</b></h6> 
+        <!-- <strong>(Oral Presentation)</strong> -->
+      </p>
+    </div>
+
+    <figure>
+      <img src="files/tta_overview.png" style="width:100%"></img>
+    </figure>
+    <p align="center">Overview of our <b>test-time augmentation (TTA) method</b> for point clouds sclassification and segmentation. </p>
+
+    <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+      <h5>Abstract</h5>
+      <p align="justify">
+        Data augmentation is a powerful technique to enhance the performance of a deep learning task but has received less attention in 3D deep learning. It is well known that when 3D shapes are sparsely represented with low point density, the performance of the downstream tasks drops significantly. In this work, we explore test-time augmentation (TTA) for 3D point clouds. We are inspired by the recent revolution of learning implicit representation and point cloud upsampling, which can produce high-quality 3D surface reconstruction and proximity-to-surface, respectively. Our idea is to leverage the implicit field reconstruction or point cloud upsampling techniques as a systematic way to augment point cloud data. Particularly, we test both strategies by sampling points from the reconstructed results and using the sampled point cloud as test-time augmented data. We show that both strategies are effective in improving accuracy. We observed that point cloud upsampling for test-time augmentation can lead to more significant performance improvement on downstream tasks such as object classification and segmentation on the ModelNet40, ShapeNet, ScanObjectNN, and SemanticKITTI datasets, especially for sparse point clouds.
+        <br>
+        <br>
+      </p>
+    </div>
+
+    <!-- <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+      <h5>Video</h5>
+      <center>
+        <iframe width="770" height="432" src="https://www.youtube.com/embed/" title="Test-Time Augmentation for 3D Point Cloud Classification and Segmentation (ECCV 2022, Oral)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </center>
+    </div> -->
+
+
+    <div class="section">
+      <h5>Materials</h5>
+      <div class="container" style="width:95%">
+        <!-- Icon row -->
+        <div class="row">
+          <div class="three columns">
+            <a href="files/3DV2024_TTA.pdf"><img
+                style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;"
+                src="files/page1.png"></a>
+          </div>
+          <div class="four columns">
+            <a href="assets/eccv22_poster_final.pdf"><img
+                style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 200px;"
+                src="files/poster_thumbnail.png"></a>
+          </div>
+          <div class="three columns">
+            <a href="https://github.com/hkust-vgd/"><img
+                style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;"
+                src="files/GitHub.png"></a>
+          </div>
+        </div>
+        <!-- Link row -->
+        <div class="row">
+          <div class="three columns">
+            <a href="files/3DV2024_TTA.pdf">Paper</a>
+          </div>
+          <div class="four columns">
+            <a href="files/3dv_tta_poster.pdf">Poster (comming soon)</a>
+          </div>
+          <div class="three columns">
+            <a href="https://github.com/hkust-vgd/">Code (comming soon)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+      <h5>Overview</h5>
+      <center>
+        <div class="caption">
+          <p align="justify">
+
+              Given a point set <span class="math inline">\(\{\mathbf{p}_i
+                \}_{i=1}^n\)</span> with <span class="math inline">\(\mathbf{p}_i \in
+                \mathbb{R}^3\)</span> represented by a matrix <span
+                class="math inline">\(\mathbf{x}_0 \in \mathbb{R}^{n \times 3}\)</span>.
+                To maintain the generality of our approach, we assume that the input <span
+                class="math inline">\(\mathbf{x}_0\)</span> is passed to pre-trained
+                network <span class="math inline">\(f\)</span> for feature extraction,
+                and the features are passed to a network <span
+                class="math inline">\(g\)</span> for final label prediction <span
+                class="math inline">\(f(\mathbf{x}_0)\)</span> throughout the inference process. 
+                Our goal is to achieve performance improvement in the downstream task via test-time
+                augmentation, where the final prediction can be defined as: 
+                
+                <span
+                class="math display">\[g(\phi(f(\mathbf{x}_0), f(\mathbf{x}_1),
+                f(\mathbf{x}_2), ...))\]</span> 
+                
+                where <span
+                class="math inline">\(\phi\)</span> is an aggregation function to
+                combine multiple features resulting from the original point set <span
+                class="math inline">\(\mathbf{x}_0\)</span> and the augmented point sets
+                <span class="math inline">\(\mathbf{x}_1\)</span>, <span
+                class="math inline">\(\mathbf{x}_2\)</span>, etc. Note that the network
+                <span class="math inline">\(f\)</span> and <span
+                class="math inline">\(g\)</span> are pre-trained and left untouched in
+                test-time augmentation; only the input is augmented.
+
+                Traditionally, a simple method for test-time augmentation is
+                jittering, which adds Gaussian noise to perturb the point cloud <span
+                class="math inline">\(\mathbf{x}_0\)</span> to generate an augmented
+                point cloud <span class="math inline">\(\mathbf{x}_k\)</span>: 
+                
+                <span
+                class="math display">\[\mathbf{x}_k = \mathbf{x}_0 + \lambda
+                \mathbf{z}_k\]</span> 
+                
+                where <span class="math inline">\(\mathbf{z}_k
+                \sim \mathcal{N}(0, I)\)</span> is a random noise vector from a normal
+                distribution, and <span class="math inline">\(\lambda\)</span> is a
+                scalar value to control the noise magnitude. This simple augmentation
+                has been widely adopted since the seminal PointNet. An issue of such
+                augmentation is that it does not consider the underlying surface or
+                point distribution because the noise <span
+                class="math inline">\(\mathbf{z}\)</span> is independent of <span
+                class="math inline">\(\mathbf{x}_0\)</span>, resulting in marginal
+                performance improvement in many cases. In this work, we viewpoint set
+                <span class="math inline">\(\mathbf{x}_0\)</span> as a noisy estimate of
+                a latent surface representation <span
+                class="math inline">\(\mathcal{S}\)</span>, and therefore, we define
+                point cloud augmentation as the process of sampling additional point
+                clouds <span class="math inline">\(\mathbf{x}_k\)</span> that explain
+                the same surface. We propose to sample augmented point clouds <span
+                class="math inline">\(\mathbf{x}_k\)</span> (<span
+                class="math inline">\(k \geq 1\)</span>) in two ways: surface sampling
+                and point cloud up-sampling. The sampled point clouds can then be
+                leveraged for downstream tasks such as classification and segmentation.
+
+          </p>
+        </div>
+        <br>
+      </center>
+    </div>
+
+    <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+      <h5>Qualitative Results</h5>
+      <center>
+        <img src="files/shapenet.png" style="width:80%"></img>
+      </center>
+      <br>
+      <p align="center">Visualization of <b>part segmentation</b> results on <b>ShapeNet</b> dataset.</p>
+
+      <center>
+        <img src="files/S3DIS.png" style="width:80%"></img>
+      </center>
+      <br>
+      <p align="center">Visualization of <b>semantic segmentation</b> results on <b>S3DIS</b> dataset.</p>
+
+      <center>
+        <img src="files/semanticKITTI.png" style="width:80%"></img>
+      </center>
+      <br>
+      <p align="center">Visualization of <b>semantic segmentation</b> results on <b>SemanticKITTI</b> dataset.</p>
+      
+    </div>
+
+    <div class="section">
+      <h5>Citation</h5>
+      <pre style="margin:0">
+        <code>@inproceedings{tavu2024tta,
+  title={Test-Time Augmentation for 3D Point Cloud Classification and Segmentation},
+  author={Tuan-Anh Vu, Srinjay Soumitra Sarkar, Zhiyuan Zhang, Binh-Son Hua, Sai-Kit Yeung},
+  booktitle={Proceedings of International Conference on 3D Vision (3DV)},
+  year={2024}
+}</code>
+</pre>
+    </div>
+
+    <!-- -->
+    <br>
+
+    <div class="section">
+      <h5>Acknowledgements</h5>
+      <p>
+        This paper was partially supported by an internal grant from HKUST (R9429). The website is modified from this <a href="https://tuananh1007.github.io/RFNet-4D/">template</a>.
+      </p>
+      <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=OPnRRmGk9XCI_raVGJ4xYln7-CxhxiSY3HiGsFRjcAY"></script>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/footable.min.js"></script>
+  
+
+  <script type="text/javascript">
+    jQuery(function ($) {
+      $('.table').footable();
+    });
+  </script>
+
+  <!-- End Document
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
